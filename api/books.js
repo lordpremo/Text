@@ -3,12 +3,8 @@ export default async function handler(req, res) {
   if (!q) return res.status(400).json({ error: "Missing q parameter" });
 
   const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(q)}`;
-
   const r = await fetch(url);
   const data = await r.json();
 
-  res.json({
-    query: q,
-    results: data.docs
-  });
+  res.json({ query: q, results: data.docs });
 }
